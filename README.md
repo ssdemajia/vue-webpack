@@ -27,13 +27,6 @@ npm run lint
 
 # 项目配置过程
 
----
-title: vue项目webpack配置
-date: 2019-03-19 19:30:31
-tags: [vue, webpack]
-categories: 🌲前端
-toc: true
----
 
 ## 必要的库
 
@@ -432,11 +425,37 @@ plugins: [
 
 使用`npm run build `用于打包应用，`npm run dev`用于开发
 
+### 美化构建过程
+
+安装相关组件主要是不显示webpack自带的输出，而是改为`friendly-errors-webpack`来输出
+
+`npm install friendly-errors-webpack-plugin --save-dev`
+
+```js
+ devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: false,
+    hot: true,
+    open: 'Chrome',
+    quiet: true, // 不显示devServer信息
+    overlay: true // 编译出现错误时将错误显示在页面中
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: ['Application running in http://localhost:8080/']
+      },
+      clearConsole: true
+    })
+  ]
+```
+
 
 
 ## 最终配置
 
-请参考我的github仓库[vue-webpack](github.com/ssdemajia/)
+请参考我的github仓库[vue-webpack](https://github.com/ssdemajia/vue-webpack/)
 
 
 
