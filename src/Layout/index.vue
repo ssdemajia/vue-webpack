@@ -1,5 +1,6 @@
 <template>
   <div class="layout">
+    <p>字体颜色～</p>
     <svg-icon icon="logo" class="icon-logo"/>
   </div>
 </template>

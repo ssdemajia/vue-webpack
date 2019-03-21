@@ -14,7 +14,13 @@ module.exports = merge(common, {
         use: [
           'vue-style-loader',
           'css-loader',
-          'sass-loader'
+          'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: path.resolve(__dirname, './src/styles/index.scss')
+            }
+          }
         ]
       }
     ]

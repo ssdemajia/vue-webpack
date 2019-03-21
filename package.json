@@ -28,6 +28,7 @@
   "author": "ss",
   "license": "ISC",
   "dependencies": {
+    "sass-resources-loader": "^2.0.0",
     "vue": "^2.6.9",
     "vue-router": "^3.0.2"
   },

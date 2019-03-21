@@ -432,7 +432,34 @@ plugins: [
 
 使用`npm run build `用于打包应用，`npm run dev`用于开发
 
+### SASS全局变量
 
+因为需要对一些颜色啥的统一起来，所以将它们放到`src/styles/index.scss`中，然后在组件里直接使用这些变量就行。这个功能需要`npm install -S sass-resources-loader`
+
+然后在css、scss的加载器前添加它，resources选项就是指明那些全局变量的地址。
+
+```js
+    rules: [
+      {
+        test: /\.css|\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: path.resolve(__dirname, './src/styles/index.scss')
+            }
+          }
+        ]
+      }
+    ]
+```
+
+
+
+## 
 
 ## 最终配置
 
