@@ -425,9 +425,7 @@ plugins: [
 
 使用`npm run build `用于打包应用，`npm run dev`用于开发
 
-<<<<<<< HEAD
-### SASS全局变量
-=======
+
 ### 美化构建过程
 
 安装相关组件主要是不显示webpack自带的输出，而是改为`friendly-errors-webpack`来输出
@@ -454,8 +452,8 @@ plugins: [
   ]
 ```
 
->>>>>>> 57d7248190aac887d5d32f49c8400ba816df111f
 
+### SASS全局变量
 因为需要对一些颜色啥的统一起来，所以将它们放到`src/styles/index.scss`中，然后在组件里直接使用这些变量就行。这个功能需要`npm install -S sass-resources-loader`
 
 然后在css、scss的加载器前添加它，resources选项就是指明那些全局变量的地址。
