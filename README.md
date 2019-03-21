@@ -477,6 +477,65 @@ plugins: [
     ]
 ```
 
+### 加载字体
+
+因为用了Element-UI，然后导入样式时`import 'element-ui/lib/theme-chalk/index.css'`会出现错误：
+
+```shell
+Failed to compile.
+./node_modules/element-ui/lib/theme-chalk/fonts/element-icons.ttf?t=1510834658947
+Module parse failed: Unexpected character ‘’ (1:0)
+You may need an appropriate loader to handle this file type.
+(Source code omitted for this binary file)
+@ ./node_modules/css-loader!./node_modules/element-ui/lib/theme-chalk/index.css 7:343-395
+@ ./node_modules/element-ui/lib/theme-chalk/index.css
+@ ./src/main.js
+@ multi (webpack)-dev-server/client?http://localhost:8080 webpack/hot/dev-server ./src/main.js
+```
+
+这是因为没有配置字体的loader，这个loader就是url-loader
+
+首先安装`npm install -D url-loader  `，然后配置
+
+```js
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'url-loader',
+        exclude: path.resolve(__dirname, './src/icons/svg')
+      }
+```
+
+需要注意的是因为之前配置的图标使用了svg-sprite-loader，在url-loader处理后导致svg-sprite-loader出错，这时候添加exlude字段就行，排除图标所在文件夹。
+
+在svg-sprite-loader指定svg图片路径：
+
+```js
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        options: {
+          symbolId: 'icon-[name]', // 将id变为icon-logo这种形式
+          publicPath: path.resolve(__dirname, './src/icons/svg')
+        }
+      },
+```
+
+### 
+
+### import()动态加载
+
+这个语法需要babel的插件
+
+`npm install @babel/plugin-syntax-dynamic-import -S`
+
+在babelrc中添加
+
+```json
+{
+	"plugins": ["@babel/plugin-syntax-dynamic-import"]
+}
+```
+
 
 
 ## 

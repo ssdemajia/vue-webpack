@@ -22,12 +22,18 @@ module.exports = {
         test: /\.svg$/,
         loader: 'svg-sprite-loader',
         options: {
-          symbolId: 'icon-[name]' // 将id变为icon-logo这种形式
+          symbolId: 'icon-[name]', // 将id变为icon-logo这种形式
+          publicPath: path.resolve(__dirname, './src/icons/svg')
         }
       },
       {
-        test: /\.js%/,
+        test: /\.js$/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'url-loader',
+        exclude: path.resolve(__dirname, './src/icons/svg')
       }
     ]
   },

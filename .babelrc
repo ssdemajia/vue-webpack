@@ -13,5 +13,6 @@
         ["@babel/env", { "targets": { "node": "current" }}]
       ]
     }
-  }
+  },
+  "plugins": ["@babel/plugin-syntax-dynamic-import"]
 }
