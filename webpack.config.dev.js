@@ -31,7 +31,19 @@ module.exports = merge(common, {
     hot: true,
     open: 'Chrome',
     quiet: true, // 不显示devServer信息
-    overlay: true // 编译出现错误时将错误显示在页面中
+    overlay: true, // 编译出现错误时将错误显示在页面中
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: false,
+      hot: true,
+      open: 'Chrome',
+      quiet: true, // 不显示devServer信息
+      overlay: true, // 编译出现错误时将错误显示在页面中
+      proxy: {
+        '/': 'http://127.0.0.1:5000',
+        changeOrigin: true
+      }
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
